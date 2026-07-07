@@ -1,0 +1,41 @@
+name: Newman API Tests
+
+on:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    # Нам нужно запустить локальный сервер в фоновом режиме, чтобы Newman мог слать запросы
+    - name: Install Dependencies & Start Server
+      run: |
+        npm install
+        npm run tern-on-api & 
+        sleep 3 # Даем серверу 3 секунды, чтобы успешно подняться
+
+    # Запускаем тесты и генерируем красивый HTML-отчет в папку 'results'
+    - name: Run Postman Tests via Newman
+      run: |
+        mkdir -p results
+        npx newman run store.collection.json -r htmlextra --reporter-htmlextra-export results/index.html
+
+    # Деплоим папку 'results' на GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./results
