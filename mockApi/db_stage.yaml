@@ -22,15 +22,15 @@ products:
     sku: 123321123
     description: wouh
     id: 4
-  - name: apple
-    price: 30
-    sku: 123321123
-    description: wouh
+  - name: null
+    price: null
+    sku: null
+    description: null
     id: 5
-  - name: apple
-    price: 30
-    sku: 123321123
-    description: wouh
+  - name: null
+    price: null
+    sku: null
+    description: null
     id: 6
 orders:
   - id: 1
