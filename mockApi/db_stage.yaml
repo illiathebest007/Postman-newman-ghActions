@@ -17,21 +17,6 @@ products:
     price: 30
     sku: 999921312423312
     description: awesome
-  - name: apple
-    price: 30
-    sku: 123321123
-    description: wouh
-    id: 4
-  - name: null
-    price: null
-    sku: null
-    description: null
-    id: 5
-  - name: null
-    price: null
-    sku: null
-    description: null
-    id: 6
 orders:
   - id: 1
     name: order1
@@ -40,8 +25,8 @@ orders:
     name: order2
     sku: 999921312423
   - id: 3
-    name: order2
-    sku: 999921312423312
+    name: order5
+    sku: 123425445656765
 users:
   - id: 1
     firstName: Alice
